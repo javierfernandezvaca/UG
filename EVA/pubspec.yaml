@@ -13,8 +13,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   get: ^4.6.6
   dio: ^5.7.0
-  # url_launcher: ^6.3.1
-  # adaptive_dialog: ^2.2.1+2
+  url_launcher: ^6.3.1
+  # adaptive_dialog: ^2.3.0
   # status_bar_control: ^3.2.1
 
 dev_dependencies:

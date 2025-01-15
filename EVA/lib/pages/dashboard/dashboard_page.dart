@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:eva/theme/app_colors.dart';
 import 'package:eva/pages/dashboard/dashboard_controller.dart';
@@ -12,10 +13,17 @@ class DashboardPage extends GetView<DashboardController> {
     return GetBuilder<DashboardController>(
       init: DashboardController(),
       builder: (_) {
-        return WillPopScope(
-          onWillPop: () async {
-            // return _.onExitApp(context);
-            return false;
+        return PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) async {
+            if (didPop) {
+              return;
+            }
+            final shouldExit = await controller.onExitApp(context);
+            if (shouldExit) {
+              // Cerrar la aplicación o realizar otra acción
+              SystemNavigator.pop();
+            }
           },
           child: const Scaffold(
             backgroundColor: AppColors.colorRojo,
